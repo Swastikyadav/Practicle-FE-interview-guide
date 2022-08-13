@@ -1,0 +1,22 @@
+body {
+  font-family: sans-serif;
+}
+
+aside {
+  width: 50%;
+}
+
+pre {
+  background: grey;
+  color: #fff;
+  padding: 5px;
+}
+
+code {
+  color: darkblue;
+}
+
+h1 {
+  text-align: center;
+  margin: 50px;
+}
