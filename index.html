@@ -994,16 +994,156 @@
         </code>
       </pre>
       <li>Two number sum</li>
+      <pre>
+        // Write a function that takes in a non empty array of distinct
+        integer representing a target sum. If any two numbers in array
+        sum up to the target sum, return them in an array.
+
+        <code>
+          function twoNumberSum(arr, target) {
+            arr.sort((a, b) => a - b);
+
+            let left = 0;
+            let right = arr.length - 1;
+
+            while (left < right) {
+              const currentSum = arr[left] + arr[right];
+
+              if (target === currentSum) {
+                return [arr[left], arr[right]];
+              } else if (currentSum < target) {
+                left++;
+              } else if (currentSum > target) {
+                right--;
+              }
+            }
+
+            return [];
+          }
+        </code>
+      </pre>
       <li>Validate subsequence</li>
+      <pre>
+        // Given two non-empty array of intergers, write a function that 
+        determines whether the second array is subsequence of the first
+        one.
+
+        <code>
+          function isValidSubsequence(array, sequence) {
+            let seqIdx = 0;
+
+            for (let n of array) {
+              if (seqIdx === sequence.length) {
+                break;
+              }
+
+              if (n === sequence[seqIdx]) {
+                seqIdx++;
+              }
+            }
+
+            return seqIdx === sequence.length;
+          }
+        </code>
+      </pre>
       <li>Sorted square array</li>
+      <pre>
+        // Write a function that takes in a non-empty array of integers
+        that are sorted in ascending order and returns a new array of the
+        same length with the squares of the original integers also
+        sorted in ascending order.
+
+        <code>
+          function sortedSquaredArray(array) {
+            const outputArr = [];
+            let smallest = 0;
+            let largest = array.length - 1;
+
+            array.forEach((n, idx) => {
+              const smallerValue = array[smallest];
+              const largerValue = array[largest];
+
+              if (Math.abs(smallerValue) > Math.abs(largerValue)) {
+                outputArr.unshift(smallerValue**2);
+                smallest++;
+              } else {
+                outputArr.unshift(largerValue**2);
+                largest--;
+              }
+            });
+
+            return outputArr;
+          }
+        </code>
+      </pre>
       <li>Depth first search</li>
+      <pre>
+        // Traverse DFS on a node
+
+        <code>
+          traverse(callback) {
+            const arr = [this.root];
+
+            while(arr.length) {
+              const node = arr.shift();
+
+              // The key difference adding children to the start of array
+              in DFS.
+
+              arr.unshift(...node.children);
+              callback(node);
+            }
+          }
+        </code>
+      </pre>
       <li>Breadth first search</li>
+      <pre>
+        // Traverse BFS on a node
+
+        <code>
+          traverse(callback) {
+            const arr = [this.root];
+
+            while(arr.length) {
+              const node = arr.shift();
+
+              // The key difference adding children to the end of array
+              in BFS.
+
+              arr.push(...node.children);
+              callback(node);
+            }
+          }
+        </code>
+      </pre>
       <li>Binary search</li>
-      <li>Class photos</li>
-      <li>Tandem bicycles</li>
-      <li>Minimum energy pair</li>
-      <li>String minimization</li>
-      <li>Minimum steps to reach Y</li>
+      <pre>
+        // Write a binary search function
+
+        <code>
+          const binarySearch(array, target) {
+            let startIndex = 0;
+            let lastIndex = array.length - 1;
+
+            while (startIndex <= lastIndex) {
+              const middleIndex = Math.floor(
+                (startIndex + lastIndex) / 2
+              );
+              const middleValue = array[middleIndex];
+
+              if (middleValue === target) return middleIndex;
+              
+              if (middleValue > target) {
+                lastIndex = middleIndex - 1;
+              } else {
+                startIndex = middleIndex + 1;
+              }
+            }
+
+            return -1;
+          }
+        </code>
+      </pre>
     </ul>
   </aside>
 
