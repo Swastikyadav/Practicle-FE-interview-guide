@@ -909,7 +909,7 @@
 
     <hr />
     
-    <h2>Algorithms:</h2>
+    <h2>DS/Algorithms:</h2>
     <ul>
       <li>Reverse string</li>
       <pre>
@@ -922,6 +922,32 @@
             }
 
             return resultStr;
+          }
+        </code>
+      </pre>
+      <li>Panagram</li>
+      <pre>
+        // Check if a sentence contains all english alphabet letters.
+
+        <code>
+          function checkPanagram(str) {
+            const arr = new Array(26).fill(false);
+
+            let index;
+
+            for (let i = 0; i < str.length - 1; i++) {
+              if (str[i] >= "A" && str[i] <= "Z") {
+                index = str.charCodeAt(i) - "A".charCodeAt(0);
+              } else if (str[i] >= "a" && str[i] <= "z") {
+                index = str.charCodeAt(i) - "a".charCodeAt(0);
+              } else {
+                continue;
+              }
+
+              arr[index] = true;
+            }
+
+            return arr.every(char => char === true);
           }
         </code>
       </pre>
@@ -1142,6 +1168,46 @@
 
             return -1;
           }
+        </code>
+      </pre>
+      <li>LRU</li>
+      <pre>
+        // LRU(Least Recently Used) cache
+
+        <code>
+          classL LRU {
+            constructor(max = 5) {
+              this.max = max;
+              this.cache = new Map();
+            }
+
+            get(key) {
+              let item = this.cache.get(key);
+
+              if (item) {
+                this.cache.delete(key);
+                this.cache.set(key, item);
+              }
+
+              return item;
+            }
+
+            set(key, value) {
+              if (this.cache.has(key)) {
+                this.cache.delete(key);
+              } else if (this.cache.size === this.max) {
+                this.cache.delete(this.first());
+              }
+
+              this.cache.set(key, value);
+            }
+
+            first() {
+              return this.cache.keys().next().value;
+            }
+          }
+
+          const LruCache = new LRU(3);
         </code>
       </pre>
     </ul>
