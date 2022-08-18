@@ -389,6 +389,32 @@
           }
         </code>
       </pre>
+      <li>
+        <pre>
+          // Attach a listener to an array which gets triggered
+          when an item is pushed into the array.
+
+          <code>
+            const arr = [1, 2, 3, 4, 5];
+
+            function triggerCb(arr) {
+              console.log("push triggered on arr", arr.length);
+            }
+
+            function pushListener(arr, cb) {
+              arr.push = function(item) {
+                Array.prototype.push.call(arr, item);
+                cb(arr);
+              }
+            }
+
+            pushListener(arr, triggerCb);
+
+            arr.push(6);
+            arr.push(70);
+          </code>
+        </pre>
+      </li>
     </ul>
   
     <hr />
